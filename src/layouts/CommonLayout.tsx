@@ -8,8 +8,10 @@ const CommonLayout = ({ children }: Props) => {
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
-            <div className="flex-1 w-full bg-neutral-200 flex justify-center items-start p-xl">
-                {children}
+            <div className="bg-neutral-200 flex justify-center items-start p-xl h-full flex-grow">
+                <div className="w-full max-w-[1200px]">
+                    {children}
+                </div>                
             </div>
         </div>
     );
