@@ -19,7 +19,7 @@ const ProductImage = ({ imageUrl, price, id }: Props) => {
     >
       <div className="flex items-center justify-between w-full">
         <div className="bg-neutral-100 rounded-[theme(borderRadius.s)] px-2 py-1 text-xl">€{price.toFixed(2)}</div>
-        <Link to={`/product/${id}`} >
+        <Link to={`/products/${id}/detail`}>
           <div className="bg-neutral-100 rounded-[theme(borderRadius.s)] p-1">
             <img src={arrowIcon} alt="Ver producto" />
           </div>
