@@ -2,7 +2,16 @@
 
 For the project to work correctly you need an environment file.
 
-1) Create a [.env](.env) file in the project root with at least:
+
+1) Create a [.env](.env) file in the project root.
+
+You can use `example.env` as a template:
+
+```bash
+cp example.env .env
+```
+
+At minimum it should include:
 
 ```dotenv
 VITE_BASE_URL="https://dulces-petalos.jakala.es"
