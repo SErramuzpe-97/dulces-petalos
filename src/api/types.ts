@@ -4,7 +4,7 @@ interface Product {
   name: string;
   binomialName: string;
   price: number;
-  imageUrl: string;
+  imgUrl: string;
   wateringsPerWeek: number;
   fertilizerType: string;
   heightInCm: number;
