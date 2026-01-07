@@ -50,8 +50,8 @@ const Home = () => {
 
   return (
     <>
-      <div className=" space-y-xl">
-        <div className="flex justify-center items-center">
+      <div className="space-y-m w-full">
+        <div className="sticky top-xl z-40 bg-neutral-200 flex justify-center items-center py-xs">
           <SearchBar value={searchTerm} onChange={setSearchTerm} />
         </div>
         { (filteredProducts.length === 0) && <h5 className="text-center">No se han encontrado productos</h5> }
