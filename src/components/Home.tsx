@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fromProductToHomeProduct } from "./utils/mappers"; 
 import { getProducts } from "../api/api";
+import SearchBar from "./common/SearchBar";
+import { filterProductsByName } from "./utils/filters";
 
 export interface HomeProduct {
   id: string;
@@ -13,6 +15,8 @@ export interface HomeProduct {
 const Home = () => {
   const [products, setProducts] = useState<HomeProduct[]>([]);
   const [error, setError] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchProducts = async () => {
     try {
@@ -21,7 +25,9 @@ const Home = () => {
       setProducts(mapped);
     } catch {
       setError(true);
-    } 
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -29,26 +35,34 @@ const Home = () => {
   }, []);
 
   if (error) {
-    return <h4 className="text-center">No se han podido cargar los productos</h4>;
+    return <h5 className="text-center">No se han podido cargar los productos</h5>;
   }
 
-  if (products.length === 0) {
-    return <h4 className="text-center">Cargando productos...</h4>;
+  if (loading) {
+    return <h5 className="text-center">Cargando productos...</h5>;
+  }
+
+  let filteredProducts: HomeProduct[] = products;
+  if (searchTerm.trim().length > 0) {
+    filteredProducts = filterProductsByName(products, searchTerm);
   }
 
   return (
     <>
       <div className=" space-y-xl">
         <div className="flex justify-center items-center">
-          searchbar
+          <SearchBar value={searchTerm} onChange={setSearchTerm} />
         </div>
-        <div className="grid gap-m grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => (
+        { (filteredProducts.length === 0) && <h5 className="text-center">No se han encontrado productos</h5> }
+        { (filteredProducts.length > 0) && 
+          <div className="grid gap-m grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProducts.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-md p-m flex flex-col items-center">
               <p>{product.name}</p>
             </div>
           ))}
-        </div>
+          </div> 
+        }                
       </div>
     </>
   )
