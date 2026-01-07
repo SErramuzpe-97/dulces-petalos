@@ -8,7 +8,7 @@ type Props = {
 const SearchBar = ({ value, onChange }: Props) => {
   return (
     <>
-      <div className="border border-neutral-500 rounded-2xs px-xs w-full max-w-[600px] border-m flex items-center">
+      <div className="border border-neutral-500 rounded-2xs px-xs w-full max-w-[600px] border-m flex items-center bg-neutral-100">
         <div className="flex items-center justify-center">
           <img
             src={searchIcon}
