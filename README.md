@@ -1,3 +1,23 @@
+# Environment variables
+
+For the project to work correctly you need an environment file.
+
+1) Create a [.env](.env) file in the project root with at least:
+
+```dotenv
+VITE_BASE_URL="https://dulces-petalos.jakala.es"
+VITE_API_VERSION="1"
+```
+
+2) Load it in your current terminal session:
+
+```bash
+source .env
+```
+
+Note: Vite reads the [.env](.env) file automatically when running `npm run dev` / `npm run build`. Running `source .env` is useful when you also want these variables available in your shell (for example, if you run scripts that rely on them).
+
+
 
 # Scripts
 
